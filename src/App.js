@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Home from "./pages/Home";
+import Pokedex from "./pages/Pokedex";
+import Favourites from "./pages/Favourites";
 
 function App() {
+  const location = useLocation();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Routes location={location} >
+        <Route path="/" element={<Home />} />
+        <Route path="/pages/pokedex" element={<Pokedex />} />
+        <Route path="/pages/favourites" element={<Favourites />} />
+      </Routes>
     </div>
   );
 }

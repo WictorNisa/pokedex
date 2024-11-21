@@ -1,0 +1,10 @@
+.favouritesContainer{
+    background-color: rgb(82, 79, 79);
+    height: 100vh;
+    width: 100%;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

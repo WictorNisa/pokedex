@@ -1,0 +1,22 @@
+.detailsButton {
+  background-color:transparent;
+  color: #fff; /* White text */
+  border: 1px solid #fff;
+  padding: 5px 10px; /* Adequate padding for clickability */
+  font-size: 16px; /* Nice readable font size */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center;
+  text-transform: uppercase; /* All caps for boldness */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+.detailsButton:hover {
+  background-color: transparent; /* White background on hover */
+  color: #333; /* Dark text on hover */
+  border: 1px solid #333; /* Dark border on hover */
+}
+
+.detailsButton:active {
+  transform: scale(0.98); /* Slight shrink effect on click */
+}
