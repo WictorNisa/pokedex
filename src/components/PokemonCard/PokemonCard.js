@@ -3,7 +3,7 @@ import styles from "./PokemonCard.module.css";
 import { typeGradients, typeColors } from "../../utils/typeStyles";
 import Button from "../Button/Button";
 
-const PokemonCard = ({ src, name, types }) => {
+const PokemonCard = ({ src, name, types, onMoreDetails }) => {
   // Flattening the types array to get individual type names
   const type = types[0];
   // Set the background gradient for the first type
@@ -31,7 +31,7 @@ const PokemonCard = ({ src, name, types }) => {
             </div>
           ))}
         </div>
-        <Button/>
+        <Button onMoreDetails={onMoreDetails}/>
       </div>
     </div>
   );
