@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className={styles.header}>
-      Header
+      <span>Pokédex</span>
       <nav className={styles.nav}>
         <ul>
           <li>

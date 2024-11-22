@@ -13,6 +13,7 @@ const Pokedex = () => {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loadingDetails, setLoadingDetails] = useState(false);
+  const [cardBackground, setCardBackground] = useState("");
 
   const setFilteredPokemon = (filteredList) => {
     setFilteredPokemonList(filteredList);
@@ -29,9 +30,10 @@ const Pokedex = () => {
     console.log("Button clicked for:", pokemonName); // Debugging log
     try {
       const details = await getPokemonDetails(pokemonName);
-      console.log("Fetched details:", details); // Debug log
-      setSelectedPokemon(details);
-      setIsModalOpen(true);
+      if (details) {
+        setSelectedPokemon(details);  // Only set if data is valid
+        setIsModalOpen(true);
+      }
     } catch (error) {
       console.log(`Failed to fetch pokemon details`, error);
     } finally {
@@ -39,10 +41,7 @@ const Pokedex = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("Is modal open:", isModalOpen);
-    console.log("Selected pokemon:", selectedPokemon);
-  }, [isModalOpen, selectedPokemon]);
+
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -84,13 +83,15 @@ const Pokedex = () => {
             name={pokemon.name}
             types={pokemon.types}
             onMoreDetails={() => handleMoreDetails(pokemon.name)}
+            
           />
         ))}
       </div>
-      {isModalOpen && (
+      {isModalOpen && selectedPokemon && (
         <PokemonDetails
           selectedPokemon={selectedPokemon}
           closeModal={closeModal}
+          cardBackground={cardBackground}
         />
       )}
     </section>

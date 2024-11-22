@@ -4,10 +4,17 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: grey;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header span {
+  font-family: 'Okami';
+  font-size: 3rem;
+  letter-spacing: 2px;
+  margin-left: 1rem;
 }
 
 .nav {
