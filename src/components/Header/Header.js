@@ -15,7 +15,7 @@ const Header = () => {
             <Link to="/pages/pokedex">Pokedex</Link>
           </li>
           <li>
-            <Link to="/pages/favourites">Favourites</Link>
+            <Link to="/pages/contact">Contact</Link>
           </li>
         </ul>
       </nav>

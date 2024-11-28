@@ -1,10 +1,11 @@
-.favouritesContainer{
-    background-color: rgb(82, 79, 79);
+footer{
     height: 100vh;
     width: 100%;
-    margin-top: 80px;
+    background-color: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
+    
 }

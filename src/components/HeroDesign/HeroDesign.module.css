@@ -1,0 +1,85 @@
+.heroDesignWrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeroDesignContainer {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.card {
+  width: 100%; /* Consistent width for all cards */
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.75);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)),
+    url("../../assets/img/charizard-pokemon-hd-wallpaper-uhdpaper.com-100@2@a.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto 0.5rem;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-family: "Roboto";
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  border: 2px solid black;
+}
+
+.card h2,
+.card h3 {
+  font-size: 2rem;
+  margin: 1rem auto 0.5rem auto;
+  width: 90%;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
+.card h1 {
+  width: 90%;
+  margin: 1rem auto 0.5rem auto;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
+.card p {
+  font-size: 1.3rem;
+  font-weight: bolder;
+  width: 90%;
+  margin: 2rem auto 1rem auto;
+  line-height: 1.4;
+}
+
+.cardLeft {
+  height: 80%; /* Shorter height for the left card */
+  background-position: left; /* Left portion of the image */
+}
+
+.cardMiddle {
+  height: 100%; /* Full height for the middle card */
+  background-position: center bottom; /* Center portion of the image */
+}
+
+.cardRight {
+  height: 80%; /* Shorter height for the right card */
+  background-position: right; /* Right portion of the image */
+}
+
+@media (max-width: 768px) {
+  .heroDesignWrapper {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center cards in the container */
+  }
+
+  .card {
+    width: 80%; /* Adjust the width for smaller screens */
+    height: auto; /* Allow natural height */
+    margin: 10px 0; /* Add vertical spacing */
+  }
+}

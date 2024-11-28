@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import styles from "./Pokedex.module.css";
 import { getPokemonDetails, getPokemonList } from "../services/api";
 import PokemonCard from "../components/PokemonCard/PokemonCard";
-import SearchBar from "../components/SearchBar/SearchBar";
 import PokemonDetails from "../components/PokemonDetails/PokemonDetails";
+import { PuffLoader } from "react-spinners";
+import { motion } from "framer-motion";
 
 const Pokedex = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -14,11 +16,8 @@ const Pokedex = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loadingDetails, setLoadingDetails] = useState(false);
   const [cardBackground, setCardBackground] = useState("");
-
-  const setFilteredPokemon = (filteredList) => {
-    setFilteredPokemonList(filteredList);
-    setIsModalOpen(true);
-  };
+  const [hasMore, setHasMore] = useState(true);
+  const [offset, setOffset] = useState(0);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -31,7 +30,7 @@ const Pokedex = () => {
     try {
       const details = await getPokemonDetails(pokemonName);
       if (details) {
-        setSelectedPokemon(details);  // Only set if data is valid
+        setSelectedPokemon(details); // Only set if data is valid
         setIsModalOpen(true);
       }
     } catch (error) {
@@ -41,38 +40,50 @@ const Pokedex = () => {
     }
   };
 
-
+  const fetchMorePokemon = async () => {
+    try {
+      const data = await getPokemonList(20, offset);
+      setPokemonList((prevList) => [...prevList, ...data]);
+      setFilteredPokemonList((prevList) => [...prevList, ...data]);
+      setOffset((prevOffset) => prevOffset + 20);
+      if (data.length === 0) {
+        setHasMore(false);
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchPokemon = async () => {
-      try {
-        const data = await getPokemonList(20, 0);
-        console.log(data);
-        setPokemonList(data);
-        setFilteredPokemonList(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
+    const initialFetch = async () => {
+      await fetchMorePokemon();
+      setOffset(20); // Set offset to 20 after the initial fetch
     };
-    fetchPokemon();
+    initialFetch();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading && offset === 0) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
-  if (loadingDetails) return <p>Loading Pokémon details...</p>;
 
-  console.log("Filtered List in Pokedex:", filteredPokemonList);
-  console.log("Full List of Pokémon:", pokemonList);
   return (
     <section className={styles.pokedexContainer}>
-      Pokedex Page\
-      <SearchBar
-        pokemonList={pokemonList}
-        setFilteredPokemon={setFilteredPokemon}
-      />
-      <div className={styles.pokedexGalleryContainer}>
+      <div className={styles.infoPokedexContainer}>
+        <h1>Hello welcome to the Pokedex Page </h1>
+        <p>
+          Here you can view all your favourite pokemons and look at detailed
+          infomation about them.
+        </p>
+      </div>
+
+      <InfiniteScroll
+        dataLength={pokemonList.length}
+        next={fetchMorePokemon}
+        hasMore={hasMore}
+        loader={<PuffLoader />}
+        className={styles.pokedexGalleryContainer}
+      >
         {(filteredPokemonList.length > 0
           ? filteredPokemonList
           : pokemonList
@@ -83,16 +94,29 @@ const Pokedex = () => {
             name={pokemon.name}
             types={pokemon.types}
             onMoreDetails={() => handleMoreDetails(pokemon.name)}
-            
           />
         ))}
-      </div>
-      {isModalOpen && selectedPokemon && (
-        <PokemonDetails
-          selectedPokemon={selectedPokemon}
-          closeModal={closeModal}
-          cardBackground={cardBackground}
-        />
+      </InfiniteScroll>
+      {isModalOpen && (
+        <motion.div
+          className={styles.modalContainer}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.5 }}
+        >
+          {loadingDetails ? (
+            <PuffLoader color="#36d7b7" />
+          ) : (
+            selectedPokemon && (
+              <PokemonDetails
+                selectedPokemon={selectedPokemon}
+                closeModal={closeModal}
+                cardBackground={cardBackground}
+              />
+            )
+          )}
+        </motion.div>
       )}
     </section>
   );

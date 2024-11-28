@@ -6,19 +6,18 @@
   align-items: center;
   height: 35vh;
   width: 15vw;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s;
+}
+
+.cardContainer:hover {
+  transform: scale(1.05);
 }
 
 .imgContainer {
   width: 100%;
   height: 50%;
 }
-
-/* .imgContainer img {
-  height: 50%;
-  width: 50%;
-  object-fit: cover;
-} */
 
 .imgContainer h3 {
   margin: 0.2rem auto;
@@ -44,15 +43,15 @@
 .typeContainerInner {
   width: 40%;
   border-radius: 8px;
-  margin: auto .5rem;
+  margin: auto 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .typeContainer p {
   text-transform: uppercase;
   margin: auto;
-  padding-top: .2rem;
-  padding-bottom: .2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 
 button {

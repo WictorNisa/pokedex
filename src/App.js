@@ -3,7 +3,8 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home";
 import Pokedex from "./pages/Pokedex";
-import Favourites from "./pages/Favourites";
+import Contact from "./pages/Contact";
+
 
 function App() {
   const location = useLocation();
@@ -13,7 +14,7 @@ function App() {
       <Routes location={location} >
         <Route path="/" element={<Home />} />
         <Route path="/pages/pokedex" element={<Pokedex />} />
-        <Route path="/pages/favourites" element={<Favourites />} />
+        <Route path="/pages/contact" element={<Contact />} />
       </Routes>
     </div>
   );

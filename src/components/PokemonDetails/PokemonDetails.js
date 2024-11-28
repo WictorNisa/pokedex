@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./PokemonDetails.module.css";
-import starIcon from "../../assets/img/favourite-star-svgrepo-com.svg";
+import { PuffLoader } from "react-spinners";
 import { typeGradients } from "../../utils/typeStyles";
+import { motion } from "motion/react";
 
 const PokemonDetails = ({ selectedPokemon, closeModal }) => {
   //Things to extract from the props: English name, number in the pokedex #, types, image, height, weight, bio and evolutions
@@ -14,14 +15,10 @@ const PokemonDetails = ({ selectedPokemon, closeModal }) => {
   const cardBackground =
     typeGradients[type] || "linear-gradient(135deg, #CCC, #EEE)";
 
-  const handleStarClick = () => {
-    console.log("Favourited: ", selectedPokemon.name);
-  };
-
   console.log("Types array for:", name, types);
 
   if (!selectedPokemon) {
-    return <p>Loading Pokémon details...</p>;
+    return <PuffLoader />;
   }
 
   return (
@@ -36,22 +33,11 @@ const PokemonDetails = ({ selectedPokemon, closeModal }) => {
             <p>#00{id}</p>
             <h4>{name}</h4>
           </div>
-
-          <div className={styles.favouriteContainer}>
-            <img
-              src={starIcon}
-              alt="Favourite Icon"
-              onClick={handleStarClick}
-            />
-          </div>
         </div>
 
         <div className={styles.imageContainer}>
           <div className={styles.imageInnerContainer}>
-            <h2
-              className={styles.japaneseNameText}
-             
-            >
+            <h2 className={styles.japaneseNameText}>
               {selectedPokemon.japName}{" "}
             </h2>
             <img
@@ -93,10 +79,6 @@ const PokemonDetails = ({ selectedPokemon, closeModal }) => {
             </ul>
           </div>
         </div>
-
-        {/* <div className={styles.closeModalContainer}>
-          <button onClick={closeModal}>Close</button>
-        </div> */}
       </div>
     </>
   );
