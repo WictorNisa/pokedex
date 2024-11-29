@@ -70,10 +70,19 @@ const Pokedex = () => {
   return (
     <section className={styles.pokedexContainer}>
       <div className={styles.infoPokedexContainer}>
-        <h1>Hello welcome to the Pokedex Page </h1>
+        <h1>Discover the Pokédex </h1>
+        <div className={styles.lineDivider}>
+          <span className={styles.line}></span>
+          <span className={styles.dots}>
+            <span className={styles.dotSmall}></span>
+            <span className={styles.dotBig}></span>
+            <span className={styles.dotSmall}></span>
+          </span>
+          <span className={styles.line}></span>
+        </div>
         <p>
-          Here you can view all your favourite pokemons and look at detailed
-          infomation about them.
+          Browse, discover, and learn all about your favorite Pokémon with
+          detailed stats and fascinating insights!
         </p>
       </div>
 
@@ -97,13 +106,15 @@ const Pokedex = () => {
           />
         ))}
       </InfiniteScroll>
+
       {isModalOpen && (
         <motion.div
           className={styles.modalContainer}
+          style={{ background: cardBackground }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           {loadingDetails ? (
             <PuffLoader color="#36d7b7" />

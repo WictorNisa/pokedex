@@ -1,11 +1,95 @@
-footer{
-    height: 100vh;
-    width: 100%;
-    background-color: #000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    
+.contactFooter {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: relative;
+  background-image: url("../assets/img/pikachu-img.jpg");
+  font-family: "Roboto";
+}
+
+.contactFooter::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+}
+
+.bigText {
+  position: absolute;
+  text-transform: uppercase;
+  top: 50%;
+  left: 50%;
+  font-size: 20vw;
+  transform: translate(-50%, -80%);
+  font-weight: bold;
+  color: transparent; /* Makes the inside transparent */
+  -webkit-text-stroke: 2px #fff; /* Border effect */
+  letter-spacing: 3px;
+  white-space: nowrap; /* Prevents wrapping of text */
+  user-select: none; /* Makes the text unselectable */
+  
+}
+
+.contactContainer {
+  margin: auto auto 3rem 2rem;
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  z-index: 1;
+}
+
+.contactContainer h1 {
+  text-transform: uppercase;
+  font-size: 5rem;
+  text-align: center;
+  margin: 1rem;
+  letter-spacing: 3px;
+  font-weight: bolder;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.contactContainer p {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  margin: 0 auto 1rem auto;
+  letter-spacing: 2px;
+  font-weight: bold;
+  background-color: black;
+  
+}
+
+.contactContainer button {
+  width: 30%;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  /* From https://css.glass */
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.contactContainer button:hover {
+  background-color: #f44336;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.contactContainer a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: transparent; /* Makes the inside transparent */
+  -webkit-text-stroke: 1px white; /* Border effect */
+  letter-spacing: 3px;
 }

@@ -15,15 +15,17 @@ const PokemonDetails = ({ selectedPokemon, closeModal }) => {
   const cardBackground =
     typeGradients[type] || "linear-gradient(135deg, #CCC, #EEE)";
 
-  console.log("Types array for:", name, types);
-
   if (!selectedPokemon) {
     return <PuffLoader />;
   }
 
   return (
     <>
-      <div className={styles.modalBackdrop} onClick={closeModal}></div>
+      <div
+        className={styles.modalBackdrop}
+        onClick={closeModal}
+        
+      ></div>
       <div
         className={styles.pokemonModalContainer}
         style={{ background: cardBackground }}
@@ -48,11 +50,11 @@ const PokemonDetails = ({ selectedPokemon, closeModal }) => {
         </div>
         <div className={styles.detailsContainer}>
           <div className={styles.infoContainer}>
-            <p>Height -</p>
+            <p>Height:</p>
             <span>{height}"</span>
-            <p>Weight -</p>
+            <p>Weight:</p>
             <span>{weight}Kg</span>
-            <p>Type -</p>
+            <p>Type:</p>
             <span>{types.map((type) => type.type.name).join("/")}</span>
           </div>
 

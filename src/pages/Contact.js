@@ -3,22 +3,24 @@ import styles from "./Contact.module.css";
 
 const Contact = () => {
   return (
-    <footer>
-      <form className={styles.contactForm}>
-        <label>
-          Name:
-          <input type="text" name="name" />
-        </label>
-        <label>
-          Email:
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Message:
-          <textarea name="message"></textarea>
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+    <footer className={styles.contactFooter}>
+      <div className={styles.bigText}>Contact me</div>
+      <div className={styles.contactContainer}>
+        <h1>Contact me</h1>
+        <p>
+          I'm Wictor, reach out to me on github
+        </p>
+        <button>
+          <a
+            href="https://github.com/WictorNisa"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.githubLink}
+          >
+            GitHub
+          </a>
+        </button>
+      </div>
     </footer>
   );
 };
